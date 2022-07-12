@@ -221,7 +221,8 @@ public class PlayerController : MonoBehaviour
         float angleToPos = Vector3.Angle(Model.forward, toPos);
 
         rot.x = Mathf.LerpAngle(rot.x, angleToPos * (rotate—lockwise ? -1 : 1), TagretBoteRotationSpeed * speedMultiplyer * Time.deltaTime);
-        TargetBone.localEulerAngles = rot;
+
+        TargetBone.rotation *= Quaternion.Euler(rot);
     }
 
     void ResetTarget()
