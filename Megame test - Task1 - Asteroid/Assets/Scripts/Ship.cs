@@ -45,7 +45,7 @@ public class Ship : Moveable
     {
         collider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        bulletsPool = new ObjectPool<Bullet>(BulletPrefab, 50);
+        bulletsPool = new ObjectPool<Bullet>(BulletPrefab, 25);
         GameStateManager.OnGameStart.AddListener(OnGameStart);
     }
 
