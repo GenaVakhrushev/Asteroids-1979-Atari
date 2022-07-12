@@ -51,20 +51,20 @@ public class Bullet : Moveable
             switch (asteroid.Size)
             {
                 case AsteroidSize.Big:
-                    Statistics.Points += 20;
+                    Statistics.Points += PointsSettings.Instance.BigAsteroidPoints;
                     break;
                 case AsteroidSize.Medium:
-                    Statistics.Points += 50;
+                    Statistics.Points += PointsSettings.Instance.MediumAsteroidPoints;
                     break;
                 case AsteroidSize.Small:
-                    Statistics.Points += 100;
+                    Statistics.Points += PointsSettings.Instance.SmallAsteroidPoints;
                     break;
             }
         }
 
         if (ufo)
         {
-            Statistics.Points += 200;
+            Statistics.Points += PointsSettings.Instance.UFOPoints;
         }
     }
 }

@@ -10,6 +10,9 @@ public class UFO : Moveable
 
     Ship ship;
 
+    public float MinRespawnTime = 20;
+    public float MaxRespawnTime = 40;
+
     public GameObject BulletPrefab;
 
     public AudioClip FireClip;
@@ -30,7 +33,7 @@ public class UFO : Moveable
 
     IEnumerator WaitRespawn()
     {
-        float waitTime = Random.Range(20, 40f);
+        float waitTime = Random.Range(MinRespawnTime, MaxRespawnTime);
         yield return new WaitForSeconds(waitTime);
         Spawn();
     }
@@ -82,5 +85,13 @@ public class UFO : Moveable
 
         AudioEffects.Play(DeathSound);
         Hide();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (MinRespawnTime > MaxRespawnTime)
+            MinRespawnTime = MaxRespawnTime;
+        if (MaxRespawnTime < MinRespawnTime)
+            MaxRespawnTime = MinRespawnTime;
     }
 }

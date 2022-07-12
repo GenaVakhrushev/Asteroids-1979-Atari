@@ -33,6 +33,7 @@ public class Ship : Moveable
 
     //пули
     public float BulletSpeed = 10;
+    public float FireRate = 3;
     public GameObject BulletPrefab;
 
     public InputType CurrentInputType = InputType.KeyboardMouse;
@@ -51,7 +52,7 @@ public class Ship : Moveable
 
     void Update()
     {
-        if (NeedFire() && Time.time - lastShotTime > 1 / 3.0)
+        if (NeedFire() && Time.time - lastShotTime > 1 / FireRate)
         {
             Fire();
         }
