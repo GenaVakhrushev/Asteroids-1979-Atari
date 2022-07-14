@@ -54,14 +54,15 @@ public class Asteroid : Moveable
             AsteroidsManager.AsteroidsCount++;
 
             float newSpeed = Random.Range(AsteroidsManager.MinStartSpeed, AsteroidsManager.MaxStartSpeed);
+            float velocityAngle = Vector2.Angle(velocity, Vector2.right) * (Vector2.Angle(velocity, Vector2.up) < 90 ? 1 : -1);
 
             Asteroid asteroid = AsteroidsManager.AsteroidsPool.GetObject();
-            float launchRadAngle = (Vector2.Angle(velocity, Vector2.right) + AsteroidsSettings.Instance.DestroyAngle) * Mathf.Deg2Rad;
+            float launchRadAngle = (velocityAngle + AsteroidsSettings.Instance.DestroyAngle) * Mathf.Deg2Rad;
             asteroid.Launch(new Vector2(Mathf.Cos(launchRadAngle), Mathf.Sin(launchRadAngle)).normalized * newSpeed, transform.position);
             asteroid.SetSize(size - 1);
 
             asteroid = AsteroidsManager.AsteroidsPool.GetObject();
-            launchRadAngle = (Vector2.Angle(velocity, Vector2.right) - AsteroidsSettings.Instance.DestroyAngle) * Mathf.Deg2Rad;
+            launchRadAngle = (velocityAngle - AsteroidsSettings.Instance.DestroyAngle) * Mathf.Deg2Rad;
             asteroid.Launch(new Vector2(Mathf.Cos(launchRadAngle), Mathf.Sin(launchRadAngle)).normalized * newSpeed, transform.position);
             asteroid.SetSize(size - 1);
         }
