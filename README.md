@@ -1,2 +1,1 @@
-# megame-test-task
-Тестовое задание для Unity разработчика
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/FMLvQQVGeYM/0.jpg)](https://www.youtube.com/watch?v=FMLvQQVGeYM)
