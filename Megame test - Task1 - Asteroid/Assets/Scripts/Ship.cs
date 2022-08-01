@@ -10,7 +10,7 @@ public class Ship : Moveable
     ObjectPool<Bullet> bulletsPool;
     float lastShotTime = 0;
 
-    Collider2D collider;
+    new Collider2D collider;
     SpriteRenderer spriteRenderer;
     Color shipColor
     {

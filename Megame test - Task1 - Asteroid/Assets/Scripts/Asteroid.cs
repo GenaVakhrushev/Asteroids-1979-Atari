@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,10 +43,12 @@ public class Asteroid : Moveable
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Asteroid>() != null)
+        Type collisionType = collision.TryGetComponent(out Moveable moveable) ? moveable.GetType() : null;
+
+        if (collisionType == typeof(Asteroid))
             return;
 
-        if (collision.gameObject.GetComponent<Bullet>() == null || size == AsteroidSize.Small)
+        if (collisionType != typeof(Bullet) || size == AsteroidSize.Small)
         {
             AsteroidsManager.AsteroidsCount--;
         }
@@ -53,7 +56,7 @@ public class Asteroid : Moveable
         {
             AsteroidsManager.AsteroidsCount++;
 
-            float newSpeed = Random.Range(AsteroidsManager.MinStartSpeed, AsteroidsManager.MaxStartSpeed);
+            float newSpeed = UnityEngine.Random.Range(AsteroidsManager.MinStartSpeed, AsteroidsManager.MaxStartSpeed);
             float velocityAngle = Vector2.Angle(velocity, Vector2.right) * (Vector2.Angle(velocity, Vector2.up) < 90 ? 1 : -1);
 
             Asteroid asteroid = AsteroidsManager.AsteroidsPool.GetObject();

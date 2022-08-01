@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,12 +27,14 @@ public class Bullet : Moveable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Type collisionType = collision.TryGetComponent(out Moveable moveable) ? moveable.GetType() : null;
+
         //не реагировать с пулями
-        if (collision.gameObject.GetComponent<Bullet>() != null)
+        if (collisionType == typeof(Bullet))
             return;
 
         //пули корабля не реагируют с кораблём
-        if(collision.gameObject.GetComponent<Ship>() != null && tag == "ShipBullet")
+        if(collisionType == typeof(Bullet) && tag == "ShipBullet")
             return;
 
         //пули НЛО не реагируют с НЛО
